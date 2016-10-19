@@ -299,6 +299,10 @@ Observable.prototype.combine = function(other, combinator) {
   return combine([this, other], combinator);
 };
 
+// ({[string]:Stream|Property}, Function|undefiend) -> Stream
+// ({[string]:Stream|Property}, {[string]:Stream|Property}, Function|undefiend) -> Stream
+import combineProps from './many-sources/combine-props';
+
 // (Array<Stream|Property>, Function|undefiend) -> Stream
 import zip from './many-sources/zip';
 Observable.prototype.zip = function(other, combinator) {
@@ -456,14 +460,14 @@ Observable.prototype.endOnError = function() {
 
 const Kefir = { Observable, Stream, Property, never, later, interval, sequentially,
 fromPoll, withInterval, fromCallback, fromNodeCallback, fromEvents, stream,
-constant, constantError, fromPromise, fromESObservable, combine, zip, merge,
-concat, Pool, pool, repeat, staticLand };
+constant, constantError, fromPromise, fromESObservable, combine, combineProps,
+zip, merge, concat, Pool, pool, repeat, staticLand };
 
 Kefir.Kefir = Kefir;
 
 export { Kefir, Observable, Stream, Property, never, later, interval, sequentially,
 fromPoll, withInterval, fromCallback, fromNodeCallback, fromEvents, stream,
 constant, constantError, fromPromise, fromESObservable, combine, zip, merge,
-concat, Pool, pool, repeat, staticLand };
+concat, combineProps, Pool, pool, repeat, staticLand };
 
 export default Kefir
